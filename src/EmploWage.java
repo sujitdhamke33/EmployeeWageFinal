@@ -2,26 +2,32 @@ import java.util.Random;
 
 public class EmploWage {
     public static void main(String[] args) {
-        boolean isPresent = isEmployeePresent();
+        int wagePerHour = 20;
+        int fullTimeHours = 8;
+        int partTimeHours = 4;
+        int attendence = randomAttendence();
 
-        if (isPresent) { //it is true
-            int dailyWage = calculateDailyWage();
-            System.out.println("Employee is Present. Daily Wage: $" + dailyWage);
-        } else {
-            System.out.println("Employee is Absent. No Daily Wage.");
+        int dailyWage = DailyWage(wagePerHour,fullTimeHours,attendence,partTimeHours);
+        System.out.println("Daily Wage: $" + dailyWage);
+
+    }
+    static int randomAttendence(){
+        Random rand = new Random();
+        return rand.nextInt(3);
+    }
+    static int DailyWage(int wagePerHour, int fullTimeHours, int attendence,  int partTimeHours) {
+
+        int dailyWage = 0;
+
+        if(attendence == 0){
+            System.out.println("Employee is absent : No daily wage" );
+        }else if(attendence == 1) {
+            dailyWage = wagePerHour * fullTimeHours;
+            System.out.println("Employee is Full time");
+        } else{
+            dailyWage = wagePerHour * partTimeHours;
+            System.out.println("Employee is part_time");
         }
-    }
-
-    static boolean isEmployeePresent() {
-        Random random = new Random();
-        return random.nextInt(2) == 1; //it help to check weather the employee is present
-    }
-
-    static int calculateDailyWage() {
-
-        final int WAGE_PER_HOUR = 20;
-        final int FULL_DAY_HOURS = 8;
-
-        return WAGE_PER_HOUR * FULL_DAY_HOURS;
+        return dailyWage;
     }
 }
