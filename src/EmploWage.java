@@ -1,22 +1,27 @@
 import java.util.Random;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class EmploWage {
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee\n" +
-                "Wage Computation\n" +
-                "Program on Master Branch");
-        int attendence = randomAttendence();
+        boolean isPresent = isEmployeePresent();
 
-        if(attendence == 1){
-            System.out.println("Employee is Present");
-        }else{
-            System.out.println("Employee is Absent");
+        if (isPresent) { //it is true
+            int dailyWage = calculateDailyWage();
+            System.out.println("Employee is Present. Daily Wage: $" + dailyWage);
+        } else {
+            System.out.println("Employee is Absent. No Daily Wage.");
         }
     }
-    static int randomAttendence(){
-        Random rand = new Random();
-        return rand.nextInt(2);
+
+    static boolean isEmployeePresent() {
+        Random random = new Random();
+        return random.nextInt(2) == 1; //it help to check weather the employee is present
+    }
+
+    static int calculateDailyWage() {
+
+        final int WAGE_PER_HOUR = 20;
+        final int FULL_DAY_HOURS = 8;
+
+        return WAGE_PER_HOUR * FULL_DAY_HOURS;
     }
 }
