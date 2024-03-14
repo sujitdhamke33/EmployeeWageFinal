@@ -5,19 +5,24 @@ public class EmploWage {
         int wagePerHour = 20;
         int fullTimeHours = 8;
         int partTimeHours = 4;
+        int totalDaysInMonth = 20;
 
-        int attendance = generateRandomAttendance();
-        int dailyWage = calculateDailyWage(wagePerHour, attendance, fullTimeHours, partTimeHours);
-        System.out.println("Daily Wage: $" + dailyWage);
+        int totalWage = 0;
+
+        for (int day = 1; day <= totalDaysInMonth; day++) {
+            int attendance = generateRandomAttendance();
+            int dailyWage = calculateDailyWage(wagePerHour, attendance, fullTimeHours, partTimeHours);
+            totalWage += dailyWage;
+            System.out.println("Day " + day + ": Daily Wage - $" + dailyWage);
+        }
+
+        System.out.println("Total Monthly Wage: $" + totalWage);
     }
-
 
     private static int generateRandomAttendance() {
         Random random = new Random();
         return random.nextInt(3);
     }
-
-
     private static int calculateDailyWage(int wagePerHour, int attendance, int fullTimeHours, int partTimeHours) {
         int dailyWage = 0;
 
