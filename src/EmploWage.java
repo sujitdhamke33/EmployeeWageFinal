@@ -6,40 +6,51 @@ public class EmploWage {
         int fullTimeHours = 8;
         int partTimeHours = 4;
         int totalDaysInMonth = 20;
+        int maxTotalWorkingHours = 100;
 
         int totalWage = 0;
+        int totalWorkingHours = 0;
+        int daysWorked = 0;
 
-        for (int day = 1; day <= totalDaysInMonth; day++) {
+        while (daysWorked <= totalDaysInMonth && totalWorkingHours <= maxTotalWorkingHours) {
             int attendance = generateRandomAttendance();
-            int dailyWage = calculateDailyWage(wagePerHour, attendance, fullTimeHours, partTimeHours);
-            totalWage += dailyWage;
-            System.out.println("Day " + day + ": Daily Wage - $" + dailyWage);
+            int hoursWorked = calculateHoursWorked(attendance, fullTimeHours, partTimeHours);
+
+            if (hoursWorked > 0) {
+                daysWorked++;
+                totalWorkingHours += hoursWorked;
+                int dailyWage = wagePerHour * hoursWorked;
+                totalWage += dailyWage;
+                System.out.println("Day " + daysWorked + ": Daily Wage - $" + dailyWage);
+            }
         }
 
         System.out.println("Total Monthly Wage: $" + totalWage);
+        System.out.println("Total Working Hours: " + totalWorkingHours);
+        System.out.println("Total Days Worked: " + daysWorked);
     }
 
     private static int generateRandomAttendance() {
         Random random = new Random();
         return random.nextInt(3);
     }
-    private static int calculateDailyWage(int wagePerHour, int attendance, int fullTimeHours, int partTimeHours) {
-        int dailyWage = 0;
+
+    private static int calculateHoursWorked(int attendance, int fullTimeHours, int partTimeHours) {
+        int hoursWorked = 0;
 
         switch (attendance) {
-            case 0:
-                System.out.println("Employee is absent.");
-                break;
             case 1:
-                dailyWage = wagePerHour * fullTimeHours;
+                hoursWorked = fullTimeHours;
                 System.out.println("Full-time employee is present and worked for 8 hours.");
                 break;
             case 2:
-                dailyWage = wagePerHour * partTimeHours;
+                hoursWorked = partTimeHours;
                 System.out.println("Part-time employee is present and worked for 4 hours.");
                 break;
+            default:
+                System.out.println("Employee is absent.");
         }
 
-        return dailyWage;
+        return hoursWorked;
     }
 }
