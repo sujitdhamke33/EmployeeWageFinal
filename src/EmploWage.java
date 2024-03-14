@@ -1,17 +1,17 @@
 import java.util.Random;
 
 public class EmploWage {
-    public static void main(String[] args) {
-        int wagePerHour = 20;
-        int fullTimeHours = 8;
-        int partTimeHours = 4;
-        int totalDaysInMonth = 20;
-        int maxTotalWorkingHours = 100;
+    private static int wagePerHour = 20;
+    private static int fullTimeHours = 8;
+    private static int partTimeHours = 4;
+    private static int totalDaysInMonth = 20;
+    private static int maxTotalWorkingHours = 100;
 
-        int totalWage = 0;
-        int totalWorkingHours = 0;
-        int daysWorked = 0;
+    private int totalWage = 0;
+    private int totalWorkingHours = 0;
+    private int daysWorked = 0;
 
+    public void calculateEmployeeWage() {
         while (daysWorked <= totalDaysInMonth && totalWorkingHours <= maxTotalWorkingHours) {
             int attendance = generateRandomAttendance();
             int hoursWorked = calculateHoursWorked(attendance, fullTimeHours, partTimeHours);
@@ -23,12 +23,14 @@ public class EmploWage {
                 totalWage += dailyWage;
                 System.out.println("Day " + daysWorked + ": Daily Wage - $" + dailyWage);
             }
+            System.out.println("Total Monthly Wage: $" + totalWage);
+            System.out.println("Total Working Hours: " + totalWorkingHours);
+            System.out.println("Total Days Worked: " + daysWorked);
         }
-
-        System.out.println("Total Monthly Wage: $" + totalWage);
-        System.out.println("Total Working Hours: " + totalWorkingHours);
-        System.out.println("Total Days Worked: " + daysWorked);
     }
+
+
+
 
     private static int generateRandomAttendance() {
         Random random = new Random();
@@ -52,5 +54,10 @@ public class EmploWage {
         }
 
         return hoursWorked;
+    }
+
+    public static void main(String[] args) {
+        EmploWage employee = new EmploWage();
+        employee.calculateEmployeeWage();
     }
 }
