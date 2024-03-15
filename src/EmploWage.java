@@ -1,25 +1,22 @@
 import java.util.Random;
 
 public class EmploWage {
-    private static int wagePerHour = 20;
     private static int fullTimeHours = 8;
     private static int partTimeHours = 4;
-    private static int totalDaysInMonth = 20;
-    private static int maxTotalWorkingHours = 100;
 
     private int totalWage = 0;
     private int totalWorkingHours = 0;
     private int daysWorked = 0;
 
-    public void calculateEmployeeWage() {
-        while (daysWorked <= totalDaysInMonth && totalWorkingHours <= maxTotalWorkingHours) {
+    public void calculateEmployeeWage(String companyName, int empRate, int noOfWorkingdays, int maxHoursPerMonth) {
+        while (daysWorked <= noOfWorkingdays && totalWorkingHours <= maxHoursPerMonth) {
             int attendance = generateRandomAttendance();
             int hoursWorked = calculateHoursWorked(attendance, fullTimeHours, partTimeHours);
 
             if (hoursWorked > 0) {
                 daysWorked++;
                 totalWorkingHours += hoursWorked;
-                int dailyWage = wagePerHour * hoursWorked;
+                int dailyWage = empRate * hoursWorked;
                 totalWage += dailyWage;
                 System.out.println("Day " + daysWorked + ": Daily Wage - $" + dailyWage);
             }
@@ -58,6 +55,7 @@ public class EmploWage {
 
     public static void main(String[] args) {
         EmploWage employee = new EmploWage();
-        employee.calculateEmployeeWage();
+        employee.calculateEmployeeWage("infosys",50,25,150);
+        // employee.calculateEmployeeWage("Godrej",40,15,180);
     }
 }
