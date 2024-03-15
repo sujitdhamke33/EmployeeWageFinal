@@ -21,9 +21,10 @@ public class CompanyEmployeeWage
 
     @Override
     public String toString() {
-        return "CompanyEmployeeWage [company=" + company + ", Emp_rate_per_Hour=" + Emp_rate_per_Hour
-                + ", NoofWorkingDays=" + NoofWorkingDays + ", maxHrs=" + maxHrs + ", empWage=" + empWage + "]";
+        return "CompanyEmployeeWage for company is "+company+" Total Wage is "+empWage;
     }
+
+
 
 
 }
