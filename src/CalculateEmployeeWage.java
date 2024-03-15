@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CalculateEmployeeWage implements CalculteWageInterface
@@ -6,27 +7,28 @@ public class CalculateEmployeeWage implements CalculteWageInterface
     final static int Is_Part_Time=2;
     final static int Is_Absent=0;
 
-    int numofCompany=0;
-    CompanyEmployeeWage[] CompanyEmployeeWageArray;
+    public ArrayList<CompanyEmployeeWage> CompanyEmployeeWageList;
 
     public CalculateEmployeeWage()
     {
-        CompanyEmployeeWageArray=new CompanyEmployeeWage[5];
+        CompanyEmployeeWageList=new ArrayList<>();
     }
 
     @Override
     public void addemployeeWage(String company, int Emp_rate_per_Hour, int NoofWorkingDays, int maxHrs)
     {
-        CompanyEmployeeWageArray[numofCompany++]=new CompanyEmployeeWage(company, Emp_rate_per_Hour, NoofWorkingDays, maxHrs);
+        CompanyEmployeeWage companyemployeeWage=new  CompanyEmployeeWage(company, Emp_rate_per_Hour, NoofWorkingDays, maxHrs);
+        CompanyEmployeeWageList.add(companyemployeeWage);
     }
 
     @Override
     public void calculateEmployeewage()
     {
-        for (int i = 0; i < numofCompany; i++)
+        for (int i = 0; i < CompanyEmployeeWageList.size(); i++)
         {
-            CompanyEmployeeWageArray[i].setempWage(this.calculatewage(CompanyEmployeeWageArray[i]));
-            System.out.println(CompanyEmployeeWageArray[i]);
+            CompanyEmployeeWage companyemployeeWage=CompanyEmployeeWageList.get(i);
+            companyemployeeWage.setempWage(this.calculatewage(companyemployeeWage));
+            System.out.println(companyemployeeWage);
         }
     }
 
