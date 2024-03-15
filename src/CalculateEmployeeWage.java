@@ -33,7 +33,6 @@ public class CalculateEmployeeWage implements CalculteWageInterface
         {
             CompanyEmployeeWage companyemployeeWage=CompanyEmployeeWageList.get(i);
             companyemployeeWage.setempWage(this.calculatewage(companyemployeeWage));
-            System.out.println(companyemployeeWage);
         }
     }
     @Override
@@ -62,8 +61,15 @@ public class CalculateEmployeeWage implements CalculteWageInterface
                     break;
             }
             totalempHrs+=empHrs;
-            System.out.println("After Day "+totalworkingday+" Employee Daily Wage is : "+totalempHrs*companyEmployeeWage.Emp_rate_per_Hour);
+//			System.out.println("After Day "+totalworkingday+" Employee Daily Wage is : "+totalempHrs*companyEmployeeWage.Emp_rate_per_Hour);
         }
         return totalempHrs*companyEmployeeWage.Emp_rate_per_Hour;
+    }
+
+    @Override
+    public void getTotalWage(String company)
+    {
+        int result= CompanyEmployeeWageMap.get(company).empWage;
+        System.out.println("Total Wage of Company "+company+" is : "+result);
     }
 }
